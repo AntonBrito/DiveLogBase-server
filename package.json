@@ -1,0 +1,16 @@
+{
+  "name": "divelogbase",
+  "version": "1.0.0",
+  "description": "GraphQl Server",
+  "main": "server.js",
+  "scripts": {
+    "dev:server": "nodemon server.js"
+  },
+  "author": "Antonio Brito",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "nodemon": "^1.18.6"
+  }
+}
