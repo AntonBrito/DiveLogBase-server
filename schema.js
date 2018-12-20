@@ -32,7 +32,13 @@ const DivelogType = new GraphQlObjectType({
 const RootQuery = new GraphQlObjectType({
   name: "RootQueryType",
   dive: {
-    type:DiveType
+    type:DiveType,
+    args:{
+      id:{GraphQLString}
+    },
+    resolve(parentValue, args){
+      
+    }
   }
 });
 
