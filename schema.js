@@ -14,24 +14,24 @@ const divers = [
     name: "John Snow",
     location: "jamestow",
     date: "nov-6,2018",
-    notes: "F... Awesome, but winter is comning."
+    note: "F... Awesome, but winter is comning."
   },
   {
     id: "2",
     name: "Aviva",
     location: "Praia",
     date: "fev-17,2015",
-    notes: "Amazing!"
+    note: "Amazing!"
   },
   {
     id: "3",
     name: "Sara",
     location: "North Carolina",
     date: "jul-24,2018",
-    notes: "Cant wait to go again!"
+    note: "Cant wait to go again!"
   }
 ];
-// Customer Type
+// Diver Type
 const diverType = new GraphQLObjectType({
   name: "Diver",
   fields: () => ({
@@ -39,7 +39,7 @@ const diverType = new GraphQLObjectType({
     name: { type: GraphQLString },
     location: { type: GraphQLString },
     date: { type: GraphQLString },
-    notes: { type: GraphQLString }
+    note: { type: GraphQLString }
   })
 });
 // Root Query
@@ -57,6 +57,12 @@ const RootQuery = new GraphQLObjectType({
             return divers[i];
           }
         }
+      }
+    },
+    divers: {
+      type: new GraphQLList(diverType),
+      resolve(parentValue, args) {
+        return divers;
       }
     }
   }
