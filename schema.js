@@ -7,39 +7,61 @@ const {
   GraphQLNonNull
 } = require("graphql");
 
-// Hardcode data
-
-cosnt dives = [
-  {id:'1', name:'John Snow', location:'narraganset', note:'amazing experience'},
-  {id:'2', name:'Anton brito', location:'Jamestown', note:'Dope'},
-  {id:'3', name:'Riley', location:'QuebraCanela', note:'Cant wait to go again'}
+// Hardcoded data
+const divers = [
+  {
+    id: "1",
+    name: "John Snow",
+    location: "jamestow",
+    date: "nov-6,2018",
+    notes: "F... Awesome, but winter is comning."
+  },
+  {
+    id: "2",
+    name: "Aviva",
+    location: "Praia",
+    date: "fev-17,2015",
+    notes: "Amazing!"
+  },
+  {
+    id: "3",
+    name: "Sara",
+    location: "North Carolina",
+    date: "jul-24,2018",
+    notes: "Cant wait to go again!"
+  }
 ];
-
-
-// Dive Type
-
-const DivelogType = new GraphQlObjectType({
-  name: "Dive",
+// Customer Type
+const diverType = new GraphQLObjectType({
+  name: "Diver",
   fields: () => ({
     id: { type: GraphQLString },
     name: { type: GraphQLString },
     location: { type: GraphQLString },
-    note: { type: GraphQLString }
+    date: { type: GraphQLString },
+    notes: { type: GraphQLString }
   })
 });
-
 // Root Query
-const RootQuery = new GraphQlObjectType({
+const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
-  dive: {
-    type:DiveType,
-    args:{
-      id:{GraphQLString}
-    },
-    resolve(parentValue, args){
-      
+  fields: {
+    diver: {
+      type: diverType,
+      args: {
+        id: { type: GraphQLString }
+      },
+      resolve(parentValue, args) {
+        for (let i = 0; i < divers.length; i++) {
+          if (divers[i].id == args.id) {
+            return divers[i];
+          }
+        }
+      }
     }
   }
 });
 
-module.exports = new GraphQLSchema({});
+module.export = new GraphQLSchema({
+  query: RootQuery
+});
