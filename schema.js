@@ -31,8 +31,9 @@ const divers = [
     note: "Cant wait to go again!"
   }
 ];
+
 // Diver Type
-const diverType = new GraphQLObjectType({
+const DiverType = new GraphQLObjectType({
   name: "Diver",
   fields: () => ({
     id: { type: GraphQLString },
@@ -47,7 +48,7 @@ const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
     diver: {
-      type: diverType,
+      type: DiverType,
       args: {
         id: { type: GraphQLString }
       },
@@ -60,7 +61,7 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     divers: {
-      type: new GraphQLList(diverType),
+      type: new GraphQLList(DiverType),
       resolve(parentValue, args) {
         return divers;
       }
