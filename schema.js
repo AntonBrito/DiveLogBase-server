@@ -73,7 +73,7 @@ const RootQuery = new GraphQLObjectType({
     divers: {
       type: new GraphQLList(DiverType),
       resolve(parentValue, args) {
-        return axios.get("http://localhost:3000/divers/").then(res => res.data);
+        return axios.get("http://localhost:3000/divers").then(res => res.data);
       }
     }
   }
