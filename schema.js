@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -8,6 +10,7 @@ const {
 } = require("graphql");
 
 // Hardcoded data
+/*
 const divers = [
   {
     id: "1",
@@ -31,6 +34,7 @@ const divers = [
     note: "Cant wait to go again!"
   }
 ];
+*/
 
 // Diver Type
 const DiverType = new GraphQLObjectType({
@@ -53,17 +57,23 @@ const RootQuery = new GraphQLObjectType({
         id: { type: GraphQLString }
       },
       resolve(parentValue, args) {
+        /*
         for (let i = 0; i < divers.length; i++) {
           if (divers[i].id == args.id) {
             return divers[i];
           }
         }
+        */
+
+        return axios
+          .get("http://localhost:3000/divers/" + args.id)
+          .then(res => res.data);
       }
     },
     divers: {
       type: new GraphQLList(DiverType),
       resolve(parentValue, args) {
-        return divers;
+        return axios.get("http://localhost:3000/divers/").then(res => res.data);
       }
     }
   }
