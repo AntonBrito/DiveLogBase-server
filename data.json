@@ -1,0 +1,25 @@
+{
+  "divers": [
+    {
+      "id": "1",
+      "name": "John Snow",
+      "location": "jamestow",
+      "date": "nov-6,2018",
+      "note": "F... Awesome, but winter is comning."
+    },
+    {
+      "id": "2",
+      "name": "Aviva",
+      "location": "Praia",
+      "date": "fev-17,2015",
+      "note": "Amazing!"
+    },
+    {
+      "id": "3",
+      "name": "Sara",
+      "location": "North Carolina",
+      "date": "jul-24,2018",
+      "note": "Cant wait to go again!"
+    }
+  ]
+}
