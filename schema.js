@@ -10,6 +10,7 @@ const {
 } = require("graphql");
 
 // Hardcoded data
+
 /*
 const divers = [
   {
