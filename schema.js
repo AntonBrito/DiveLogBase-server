@@ -80,6 +80,41 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
+const mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    addDiver: {
+      type: DiverType,
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        location: { type: new GraphQLNonNull(GraphQLString) },
+        notes: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve(parentValue, args) {
+        return axios
+          .post("http://localhost:3000/divers", {
+            name: args.name,
+            location: args.location,
+            notes: args.notes
+          })
+          .then(res => res.data);
+      }
+    },
+    deleteDiver: {
+      type: DiverType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve(parentValue, args) {
+        return axios
+          .delete("http://localhost:3000/divers" + args.id)
+          .then(res => res.data);
+      }
+    }
+  }
+});
+
 module.export = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation
 });
