@@ -110,6 +110,20 @@ const mutation = new GraphQLObjectType({
           .delete("http://localhost:3000/divers" + args.id)
           .then(res => res.data);
       }
+    },
+    editDiver: {
+      type: DiverType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+        name: { type: GraphQLString },
+        location: { type: GraphQLString },
+        notes: { type: GraphQLString }
+      },
+      resolve(parentValue, args) {
+        return axios
+          .patch("http://localhost:3000/divers/" + args.id, args)
+          .then(res => res.data);
+      }
     }
   }
 });
